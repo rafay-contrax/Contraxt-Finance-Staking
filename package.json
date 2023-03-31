@@ -1,0 +1,21 @@
+{
+  "name": "contrax-finance-staking",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ rafay-contrax/contrax-finance-staking",
+    "create-local": "graph create --node http://localhost:8020/ rafay-contrax/contrax-finance-staking",
+    "remove-local": "graph remove --node http://localhost:8020/ rafay-contrax/contrax-finance-staking",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 rafay-contrax/contrax-finance-staking",
+    "test": "graph test"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.44.0",
+    "@graphprotocol/graph-ts": "0.29.1",
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "matchstick-as": "0.5.0"
+  }
+}

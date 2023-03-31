@@ -1,0 +1,93 @@
+type Approval @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  spender: Bytes! # address
+  value: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Transfer @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  value: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type User @entity {
+id: Bytes!
+earn: [UserToken!]! @derivedFrom(field: "userId")
+}
+
+type UserToken @entity {
+id: Bytes!
+userId: User!
+vaultAddress: Bytes!
+tokenId: BigInt!
+tokenName: String!
+platformName: String!
+deposit: BigInt!
+withdraw: BigInt!
+userBalance: BigInt!
+token0: Bytes!
+token1: Bytes!
+reserve0: BigInt!
+reserve1: BigInt!
+totalSupply: BigInt!
+blockTimestamp: BigInt!
+blockNumber: BigInt!
+}
+
+type PeriodEarn @entity {
+id: Bytes!
+userId: Bytes!
+vaultAddress: Bytes!
+tokenId: BigInt!
+tokenName: String!
+platformName: String!
+totalDeposit: BigInt!
+totalWithdraw: BigInt!
+userBalance: BigInt!
+blockTimestamp: BigInt!
+blockNumber: BigInt!
+}
+
+type Deposit @entity {
+id: Bytes!
+tokenId: BigInt!
+tokenName: String!
+platformName: String!
+from: Bytes!
+value: BigInt!
+shares: BigInt!
+token0: Bytes!
+token1: Bytes!
+reserve0: BigInt!
+reserve1: BigInt!
+totalSupply: BigInt!
+userBalance: BigInt!
+blockTimestamp: BigInt!
+blockNumber: BigInt!
+}
+
+type Withdraw @entity {
+id: Bytes!
+tokenId: BigInt!
+tokenName: String!
+platformName: String!
+from: Bytes!
+value: BigInt!
+shares: BigInt!
+token0: Bytes!
+token1: Bytes!
+reserve0: BigInt!
+reserve1: BigInt!
+totalSupply: BigInt!
+userBalance: BigInt!
+blockTimestamp: BigInt!
+blockNumber: BigInt!
+}
