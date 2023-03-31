@@ -1,1 +1,1 @@
-# Contraxt-Finance-Staking
+# Contraxt-Finance-Subgraph
