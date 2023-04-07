@@ -387,6 +387,35 @@ dataSources:
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
       file: ./src/HopVault.ts
+  - kind: ethereum
+    name: Gmx
+    network: arbitrum-one
+    source:
+      address: "0x8CdF8d10ea6Cd3492e67C4250481A695c2a75C4a"
+      abi: GmxVault
+      startBlock: 75727419
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Transfer
+      abis:
+        - name: GmxVault
+          file: ./abis/GmxVault.json
+        - name: GmxLp
+          file: ./abis/GmxLp.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Deposit(indexed address,uint256,uint256,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,uint256,uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/GmxVault.ts
 
 
 
