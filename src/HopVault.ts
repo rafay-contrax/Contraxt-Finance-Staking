@@ -16,7 +16,7 @@ let idArray = [19, 18, 17, 16, 27, 28];
 let tokenNameArray = ["Hop_Dai", "Hop_Usdt", "Hop_Usdc", "Hop_Eth", "Hop_rEth", "Hop_Magic"];
 let vaultArray: Array<string> = [
   "0x8ca3f11485Bd85Dd0E952C6b21981DEe8CD1E901",
-  "0xCe3B19D820CB8B9ae370E423B0a329c4314335fE",
+  "0x5cc3543656EfA30144965C6c538F4d8379F83138",
   "0x1dda3B8A728a62a30f79d1E2a10e3d6B85ef4C5d",
   "0xfd3573bebDc8bF323c65Edf2408Fd9a8412a8694",
   "0x6C416e46424aF2676E9603F9D707f8d4808Bb5d8",
