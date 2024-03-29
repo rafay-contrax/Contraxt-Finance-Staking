@@ -65,13 +65,7 @@ export function handleDeposit(event: DepositEvent): void {
       break;
     }
   }
-  let pairContract = HopLp.bind(contract.token());
-  let swap = HopSwap.bind(pairContract.swap());
-  let token0 = swap.getToken(0);
-  let token1 = swap.getToken(1);
-  let reserve0 = swap.getTokenBalance(0);
-  let reserve1 = swap.getTokenBalance(1);
-  let totalSupply = pairContract.totalSupply();
+
   let deposit = new Deposit(event.transaction.hash.concatI32(event.logIndex.toI32()));
   let user = User.load(userId);
 
@@ -95,11 +89,6 @@ export function handleDeposit(event: DepositEvent): void {
 
     userToken.deposit = userToken.deposit.plus(event.params._value);
     userToken.userBalance = contract.balanceOf(userId);
-    userToken.token0 = token0;
-    userToken.token1 = token1;
-    userToken.reserve0 = reserve0;
-    userToken.reserve1 = reserve1;
-    userToken.totalSupply = totalSupply;
     userToken.blockTimestamp = event.block.timestamp;
     userToken.blockNumber = event.block.number;
 
@@ -109,11 +98,6 @@ export function handleDeposit(event: DepositEvent): void {
     deposit.from = userId;
     deposit.shares = event.params._shares;
     deposit.value = event.params._value;
-    deposit.token0 = token0;
-    deposit.token1 = token1;
-    deposit.reserve0 = reserve0;
-    deposit.reserve1 = reserve1;
-    deposit.totalSupply = totalSupply;
     deposit.userBalance = contract.balanceOf(userId);
     deposit.blockTimestamp = event.block.timestamp;
     deposit.blockNumber = event.block.number;
@@ -142,11 +126,6 @@ export function handleDeposit(event: DepositEvent): void {
 
   userToken.deposit = userToken.deposit.plus(event.params._value);
   userToken.userBalance = contract.balanceOf(userId);
-  userToken.token0 = token0;
-  userToken.token1 = token1;
-  userToken.reserve0 = reserve0;
-  userToken.reserve1 = reserve1;
-  userToken.totalSupply = totalSupply;
   userToken.blockTimestamp = event.block.timestamp;
   userToken.blockNumber = event.block.number;
 
@@ -156,11 +135,6 @@ export function handleDeposit(event: DepositEvent): void {
   deposit.from = userId;
   deposit.shares = event.params._shares;
   deposit.value = event.params._value;
-  deposit.token0 = token0;
-  deposit.token1 = token1;
-  deposit.reserve0 = reserve0;
-  deposit.reserve1 = reserve1;
-  deposit.totalSupply = totalSupply;
   deposit.userBalance = contract.balanceOf(userId);
   deposit.blockTimestamp = event.block.timestamp;
   deposit.blockNumber = event.block.number;

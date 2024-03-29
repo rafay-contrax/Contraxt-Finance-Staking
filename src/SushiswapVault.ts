@@ -88,13 +88,7 @@ import {
         break;
       }
     }
-    let pairContract = SushiLp.bind(contract.token());
-    let token0 = pairContract.token0();
-    let token1 = pairContract.token1();
-    let reserves = pairContract.getReserves();
-    let reserve0 = reserves.get_reserve0();
-    let reserve1 = reserves.get_reserve1();
-    let totalSupply = pairContract.totalSupply();
+
     let deposit = new Deposit(
       event.transaction.hash.concatI32(event.logIndex.toI32())
     );
@@ -120,11 +114,6 @@ import {
   
       userToken.deposit = userToken.deposit.plus(event.params._value);
       userToken.userBalance = contract.balanceOf(userId);
-      userToken.token0 = token0;
-      userToken.token1 = token1;
-      userToken.reserve0 = reserve0;
-      userToken.reserve1 = reserve1;
-      userToken.totalSupply = totalSupply;
       userToken.blockTimestamp = event.block.timestamp;
       userToken.blockNumber = event.block.number;
   
@@ -134,11 +123,6 @@ import {
       deposit.from = userId;
       deposit.shares = event.params._shares;
       deposit.value = event.params._value;
-      deposit.token0 = token0;
-      deposit.token1 = token1;
-      deposit.reserve0 = reserve0;
-      deposit.reserve1 = reserve1;
-      deposit.totalSupply = totalSupply;
       deposit.userBalance = contract.balanceOf(userId);
       deposit.blockTimestamp = event.block.timestamp;
       deposit.blockNumber = event.block.number;
@@ -167,11 +151,6 @@ import {
   
     userToken.deposit = userToken.deposit.plus(event.params._value);
     userToken.userBalance = contract.balanceOf(userId);
-    userToken.token0 = token0;
-    userToken.token1 = token1;
-    userToken.reserve0 = reserve0;
-    userToken.reserve1 = reserve1;
-    userToken.totalSupply = totalSupply;
     userToken.blockTimestamp = event.block.timestamp;
     userToken.blockNumber = event.block.number;
   
@@ -181,11 +160,6 @@ import {
     deposit.from = userId;
     deposit.shares = event.params._shares;
     deposit.value = event.params._value;
-    deposit.token0 = token0;
-    deposit.token1 = token1;
-    deposit.reserve0 = reserve0;
-    deposit.reserve1 = reserve1;
-    deposit.totalSupply = totalSupply;
     deposit.userBalance = contract.balanceOf(userId);
     deposit.blockTimestamp = event.block.timestamp;
     deposit.blockNumber = event.block.number;
@@ -211,13 +185,7 @@ import {
         break;
       }
     }
-    let pairContract = SushiLp.bind(contract.token());
-    let token0 = pairContract.token0();
-    let token1 = pairContract.token1();
-    let reserves = pairContract.getReserves();
-    let reserve0 = reserves.get_reserve0();
-    let reserve1 = reserves.get_reserve1();
-    let totalSupply = pairContract.totalSupply();
+
     let withdraw = new Withdraw(
       event.transaction.hash.concatI32(event.logIndex.toI32())
     );
@@ -272,11 +240,6 @@ import {
       withdraw.from = userId;
       withdraw.shares = event.params._shares;
       withdraw.value = event.params._value;
-      withdraw.token0 = token0;
-      withdraw.token1 = token1;
-      withdraw.reserve0 = reserve0;
-      withdraw.reserve1 = reserve1;
-      withdraw.totalSupply = totalSupply;
       withdraw.userBalance = contract.balanceOf(userId);
       withdraw.blockTimestamp = event.block.timestamp;
       withdraw.blockNumber = event.block.number;
@@ -335,11 +298,6 @@ import {
     withdraw.from = userId;
     withdraw.shares = event.params._shares;
     withdraw.value = event.params._value;
-    withdraw.token0 = token0;
-    withdraw.token1 = token1;
-    withdraw.reserve0 = reserve0;
-    withdraw.reserve1 = reserve1;
-    withdraw.totalSupply = totalSupply;
     withdraw.userBalance = contract.balanceOf(userId);
     withdraw.blockTimestamp = event.block.timestamp;
     withdraw.blockNumber = event.block.number;

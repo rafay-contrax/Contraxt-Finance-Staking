@@ -33,11 +33,6 @@ platformName: String!
 deposit: BigInt!
 withdraw: BigInt!
 userBalance: BigInt!
-token0: Bytes!
-token1: Bytes!
-reserve0: BigInt!
-reserve1: BigInt!
-totalSupply: BigInt!
 blockTimestamp: BigInt!
 blockNumber: BigInt!
 }

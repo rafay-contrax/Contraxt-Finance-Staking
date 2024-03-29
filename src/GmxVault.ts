@@ -56,12 +56,6 @@ import {
     let vaultAddress = event.address;
     let userId = event.params._from;
 
-    let lpContract = GmxLp.bind(contract.token());
-    let token0 = contract.token();
-    let token1 = Address.fromString("0x0000000000000000000000000000000000000000");
-    let reserve0 = lpContract.totalSupply();
-    let reserve1 = zero;
-    let totalSupply = lpContract.totalSupply();
     let deposit = new Deposit(
       event.transaction.hash.concatI32(event.logIndex.toI32())
     );
@@ -87,11 +81,6 @@ import {
   
       userToken.deposit = userToken.deposit.plus(event.params._value);
       userToken.userBalance = contract.balanceOf(userId);
-      userToken.token0 = token0;
-      userToken.token1 = token1;
-      userToken.reserve0 = reserve0;
-      userToken.reserve1 = reserve1;
-      userToken.totalSupply = totalSupply;
       userToken.blockTimestamp = event.block.timestamp;
       userToken.blockNumber = event.block.number;
   
@@ -101,11 +90,6 @@ import {
       deposit.from = userId;
       deposit.shares = event.params._shares;
       deposit.value = event.params._value;
-      deposit.token0 = token0;
-      deposit.token1 = token1;
-      deposit.reserve0 = reserve0;
-      deposit.reserve1 = reserve1;
-      deposit.totalSupply = totalSupply;
       deposit.userBalance = contract.balanceOf(userId);
       deposit.blockTimestamp = event.block.timestamp;
       deposit.blockNumber = event.block.number;
@@ -134,11 +118,6 @@ import {
   
     userToken.deposit = userToken.deposit.plus(event.params._value);
     userToken.userBalance = contract.balanceOf(userId);
-    userToken.token0 = token0;
-    userToken.token1 = token1;
-    userToken.reserve0 = reserve0;
-    userToken.reserve1 = reserve1;
-    userToken.totalSupply = totalSupply;
     userToken.blockTimestamp = event.block.timestamp;
     userToken.blockNumber = event.block.number;
   
@@ -148,11 +127,6 @@ import {
     deposit.from = userId;
     deposit.shares = event.params._shares;
     deposit.value = event.params._value;
-    deposit.token0 = token0;
-    deposit.token1 = token1;
-    deposit.reserve0 = reserve0;
-    deposit.reserve1 = reserve1;
-    deposit.totalSupply = totalSupply;
     deposit.userBalance = contract.balanceOf(userId);
     deposit.blockTimestamp = event.block.timestamp;
     deposit.blockNumber = event.block.number;
