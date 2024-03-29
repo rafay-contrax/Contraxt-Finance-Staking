@@ -52,37 +52,27 @@ blockNumber: BigInt!
 }
 
 type Deposit @entity {
-id: Bytes!
-tokenId: BigInt!
-tokenName: String!
-platformName: String!
-from: Bytes!
-value: BigInt!
-shares: BigInt!
-token0: Bytes!
-token1: Bytes!
-reserve0: BigInt!
-reserve1: BigInt!
-totalSupply: BigInt!
-userBalance: BigInt!
-blockTimestamp: BigInt!
-blockNumber: BigInt!
+  id: Bytes!
+  tokenId: BigInt!
+  tokenName: String!
+  platformName: String!
+  from: Bytes!
+  value: BigInt!
+  shares: BigInt!
+  userBalance: BigInt!
+  blockTimestamp: BigInt!
+  blockNumber: BigInt!
 }
 
 type Withdraw @entity {
-id: Bytes!
-tokenId: BigInt!
-tokenName: String!
-platformName: String!
-from: Bytes!
-value: BigInt!
-shares: BigInt!
-token0: Bytes!
-token1: Bytes!
-reserve0: BigInt!
-reserve1: BigInt!
-totalSupply: BigInt!
-userBalance: BigInt!
-blockTimestamp: BigInt!
-blockNumber: BigInt!
+  id: Bytes!
+  tokenId: BigInt!
+  tokenName: String!
+  platformName: String!
+  from: Bytes!
+  value: BigInt!
+  shares: BigInt!
+  userBalance: BigInt!
+  blockTimestamp: BigInt!
+  blockNumber: BigInt!
 }

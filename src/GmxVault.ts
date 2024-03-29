@@ -146,16 +146,9 @@ import {
     let userId = event.params._from;
 
     let lpContract = GmxLp.bind(contract.token());
-    let token0 = contract.token();
-    let token1 = Address.fromString("0x0000000000000000000000000000000000000000");
-    let reserve0 = lpContract.totalSupply();
-    let reserve1 = zero;
-    let totalSupply = lpContract.totalSupply();
-    let withdraw = new Withdraw(
-      event.transaction.hash.concatI32(event.logIndex.toI32())
-    );
+    let withdraw = new Withdraw(event.transaction.hash.concatI32(event.logIndex.toI32()));
     let user = User.load(userId);
-  
+
     if (!user) {
       user = new User(userId);
       let userToken = UserToken.load(vaultAddress.concat(userId));
@@ -172,16 +165,14 @@ import {
         userToken.blockTimestamp = event.block.timestamp;
         userToken.blockNumber = event.block.number;
       }
-  
+
       userToken.deposit = userToken.deposit.plus(event.params._value);
       userToken.userBalance = contract.balanceOf(userId);
       userToken.blockTimestamp = event.block.timestamp;
       userToken.blockNumber = event.block.number;
-  
+
       if (contract.balanceOf(userId).equals(zero)) {
-        let periodEarn = new PeriodEarn(
-          event.transaction.hash.concatI32(event.logIndex.toI32())
-        );
+        let periodEarn = new PeriodEarn(event.transaction.hash.concatI32(event.logIndex.toI32()));
         periodEarn.userId = userId;
         periodEarn.vaultAddress = vaultAddress;
         periodEarn.tokenId = tokenId;
@@ -192,28 +183,23 @@ import {
         periodEarn.userBalance = contract.balanceOf(userId);
         periodEarn.blockTimestamp = event.block.timestamp;
         periodEarn.blockNumber = event.block.number;
-  
+
         userToken.deposit = zero;
         userToken.withdraw = zero;
-  
+
         periodEarn.save();
       }
-  
+
       withdraw.tokenId = tokenId;
       withdraw.tokenName = tokenName;
       withdraw.platformName = platform;
       withdraw.from = userId;
       withdraw.shares = event.params._shares;
       withdraw.value = event.params._value;
-      withdraw.token0 = token0;
-      withdraw.token1 = token1;
-      withdraw.reserve0 = reserve0;
-      withdraw.reserve1 = reserve1;
-      withdraw.totalSupply = totalSupply;
       withdraw.userBalance = contract.balanceOf(userId);
       withdraw.blockTimestamp = event.block.timestamp;
       withdraw.blockNumber = event.block.number;
-  
+
       withdraw.save();
       user.save();
       userToken.save();
@@ -268,11 +254,6 @@ import {
     withdraw.from = userId;
     withdraw.shares = event.params._shares;
     withdraw.value = event.params._value;
-    withdraw.token0 = token0;
-    withdraw.token1 = token1;
-    withdraw.reserve0 = reserve0;
-    withdraw.reserve1 = reserve1;
-    withdraw.totalSupply = totalSupply;
     withdraw.userBalance = contract.balanceOf(userId);
     withdraw.blockTimestamp = event.block.timestamp;
     withdraw.blockNumber = event.block.number;

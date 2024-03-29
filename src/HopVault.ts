@@ -162,7 +162,6 @@ export function handleWithdraw(event: WithdrawEvent): void {
   }
   let pairContract = HopLp.bind(contract.token());
   let swap = HopSwap.bind(pairContract.swap());
-  let token0 = swap.getToken(0);
   let token1 = swap.getToken(1);
   let reserve0 = swap.getTokenBalance(0);
   let reserve1 = swap.getTokenBalance(1);
@@ -219,11 +218,6 @@ export function handleWithdraw(event: WithdrawEvent): void {
     withdraw.from = userId;
     withdraw.shares = event.params._shares;
     withdraw.value = event.params._value;
-    withdraw.token0 = token0;
-    withdraw.token1 = token1;
-    withdraw.reserve0 = reserve0;
-    withdraw.reserve1 = reserve1;
-    withdraw.totalSupply = totalSupply;
     withdraw.userBalance = contract.balanceOf(userId);
     withdraw.blockTimestamp = event.block.timestamp;
     withdraw.blockNumber = event.block.number;
@@ -280,11 +274,6 @@ export function handleWithdraw(event: WithdrawEvent): void {
   withdraw.from = userId;
   withdraw.shares = event.params._shares;
   withdraw.value = event.params._value;
-  withdraw.token0 = token0;
-  withdraw.token1 = token1;
-  withdraw.reserve0 = reserve0;
-  withdraw.reserve1 = reserve1;
-  withdraw.totalSupply = totalSupply;
   withdraw.userBalance = contract.balanceOf(userId);
   withdraw.blockTimestamp = event.block.timestamp;
   withdraw.blockNumber = event.block.number;
