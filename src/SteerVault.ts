@@ -18,20 +18,12 @@ import {
   
   let idArray = [29, 30, 31];
   let tokenNameArray = [
-    "Gmx",
-    "Ohm",
-    "Peas",
-    "apSavvy-apOHM",
-    "apGMX-apOHM",
-    "PEAS-OHM",
+    "Usdc-Usdc.e",
+    "Usdt-Usdc.e",
   ];
   let vaultArray: Array<string> = [
-    "0x91805fD2cB80ad57379842630a569aC6D72E1B47",
-    "0x7f9E71e0d829619b5445073d034927347cf0e3eA",
-    "0x92781a20B6447F304E72321ed4BC8ca4349b3739",
-    "0x0fC2106678F73cFe2D7C09631c05E6eB079EF36A",
-    "0x483a461745e4245D5B7Be0BBFb580940d6a4F52a",
-    "0xAFbC45a9aaaD39aC26dC4D2Cc32Dc4187d897eCa",
+    "0xe41586C416D8fAb3ee01e8a29DaD6f3a8655097d",
+    "0x3fB6C1C5b7319Af78608570F97b920a553aB0Ed3",
   ];
   
   export function handleApproval(event: ApprovalEvent): void {
