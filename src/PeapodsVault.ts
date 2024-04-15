@@ -23,9 +23,9 @@ import {
     "Peas",
   ];
   let vaultArray: Array<string> = [
-    "0x1Fe901f140eF5a6a8DeD86F8E0B698a9DAA1d8A8",
-    "0x40F76635965C2544822F6eB3CA469b0d5B02A59C",
-    "0xe08dFF67F350fa53F4c8eD0A74cf6b6886b38c3D",
+    "0x91805fD2cB80ad57379842630a569aC6D72E1B47",
+    "0x7f9E71e0d829619b5445073d034927347cf0e3eA",
+    "0x92781a20B6447F304E72321ed4BC8ca4349b3739",
   ];
   
   export function handleApproval(event: ApprovalEvent): void {
