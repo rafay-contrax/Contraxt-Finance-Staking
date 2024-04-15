@@ -93,6 +93,7 @@ import {
       event.transaction.hash.concatI32(event.logIndex.toI32())
     );
     let user = User.load(userId);
+    let userBalance = contract.balanceOf(userId);
   
     if (!user) {
       user = new User(userId);
@@ -107,15 +108,12 @@ import {
         userToken.platformName = platform;
         userToken.deposit = zero;
         userToken.withdraw = zero;
-        userToken.userBalance = zero;
+        userToken.userBalance = userBalance;
         userToken.blockTimestamp = event.block.timestamp;
         userToken.blockNumber = event.block.number;
       }
   
       userToken.deposit = userToken.deposit.plus(event.params._value);
-      userToken.userBalance = contract.balanceOf(userId);
-      userToken.blockTimestamp = event.block.timestamp;
-      userToken.blockNumber = event.block.number;
   
       deposit.tokenId = tokenId;
       deposit.tokenName = tokenName;
@@ -123,7 +121,7 @@ import {
       deposit.from = userId;
       deposit.shares = event.params._shares;
       deposit.value = event.params._value;
-      deposit.userBalance = contract.balanceOf(userId);
+      deposit.userBalance = userBalance;
       deposit.blockTimestamp = event.block.timestamp;
       deposit.blockNumber = event.block.number;
   
@@ -144,15 +142,12 @@ import {
       userToken.vaultAddress = vaultAddress;
       userToken.deposit = zero;
       userToken.withdraw = zero;
-      userToken.userBalance = zero;
+      userToken.userBalance = userBalance;
       userToken.blockTimestamp = event.block.timestamp;
       userToken.blockNumber = event.block.number;
     }
   
     userToken.deposit = userToken.deposit.plus(event.params._value);
-    userToken.userBalance = contract.balanceOf(userId);
-    userToken.blockTimestamp = event.block.timestamp;
-    userToken.blockNumber = event.block.number;
   
     deposit.tokenId = tokenId;
     deposit.tokenName = tokenName;
@@ -160,7 +155,7 @@ import {
     deposit.from = userId;
     deposit.shares = event.params._shares;
     deposit.value = event.params._value;
-    deposit.userBalance = contract.balanceOf(userId);
+    deposit.userBalance = userBalance;
     deposit.blockTimestamp = event.block.timestamp;
     deposit.blockNumber = event.block.number;
   
@@ -190,6 +185,7 @@ import {
       event.transaction.hash.concatI32(event.logIndex.toI32())
     );
     let user = User.load(userId);
+    let userBalance = contract.balanceOf(userId);
   
     if (!user) {
       user = new User(userId);
@@ -203,17 +199,14 @@ import {
         userToken.platformName = platform;
         userToken.deposit = zero;
         userToken.withdraw = zero;
-        userToken.userBalance = zero;
+        userToken.userBalance = userBalance;
         userToken.blockTimestamp = event.block.timestamp;
         userToken.blockNumber = event.block.number;
       }
   
       userToken.deposit = userToken.deposit.plus(event.params._value);
-      userToken.userBalance = contract.balanceOf(userId);
-      userToken.blockTimestamp = event.block.timestamp;
-      userToken.blockNumber = event.block.number;
   
-      if (contract.balanceOf(userId).equals(zero)) {
+      if (userBalance.equals(zero)) {
         let periodEarn = new PeriodEarn(
           event.transaction.hash.concatI32(event.logIndex.toI32())
         );
@@ -224,7 +217,7 @@ import {
         periodEarn.platformName = platform;
         periodEarn.totalDeposit = userToken.deposit;
         periodEarn.totalWithdraw = userToken.withdraw;
-        periodEarn.userBalance = contract.balanceOf(userId);
+        periodEarn.userBalance = userBalance;
         periodEarn.blockTimestamp = event.block.timestamp;
         periodEarn.blockNumber = event.block.number;
   
@@ -240,7 +233,7 @@ import {
       withdraw.from = userId;
       withdraw.shares = event.params._shares;
       withdraw.value = event.params._value;
-      withdraw.userBalance = contract.balanceOf(userId);
+      withdraw.userBalance = userBalance;
       withdraw.blockTimestamp = event.block.timestamp;
       withdraw.blockNumber = event.block.number;
   
@@ -261,17 +254,14 @@ import {
       userToken.vaultAddress = vaultAddress;
       userToken.deposit = zero;
       userToken.withdraw = zero;
-      userToken.userBalance = zero;
+      userToken.userBalance = userBalance;
       userToken.blockTimestamp = event.block.timestamp;
       userToken.blockNumber = event.block.number;
     }
   
     userToken.withdraw = userToken.withdraw.plus(event.params._value);
-    userToken.userBalance = contract.balanceOf(userId);
-    userToken.blockTimestamp = event.block.timestamp;
-    userToken.blockNumber = event.block.number;
   
-    if (contract.balanceOf(userId).equals(zero)) {
+    if (userBalance.equals(zero)) {
       let periodEarn = new PeriodEarn(
         event.transaction.hash.concatI32(event.logIndex.toI32())
       );
@@ -282,7 +272,7 @@ import {
       periodEarn.platformName = platform;
       periodEarn.totalDeposit = userToken.deposit;
       periodEarn.totalWithdraw = userToken.withdraw;
-      periodEarn.userBalance = contract.balanceOf(userId);
+      periodEarn.userBalance = userBalance;
       periodEarn.blockTimestamp = event.block.timestamp;
       periodEarn.blockNumber = event.block.number;
   
@@ -298,7 +288,7 @@ import {
     withdraw.from = userId;
     withdraw.shares = event.params._shares;
     withdraw.value = event.params._value;
-    withdraw.userBalance = contract.balanceOf(userId);
+    withdraw.userBalance = userBalance;
     withdraw.blockTimestamp = event.block.timestamp;
     withdraw.blockNumber = event.block.number;
   
