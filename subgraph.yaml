@@ -558,7 +558,7 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/PeapodsVault.ts
+      file: ./src/PeapodsVault.ts    
   - kind: ethereum
     name: apSavvy_apOHMPeapodsVault
     network: arbitrum-one
@@ -618,60 +618,6 @@ dataSources:
     network: arbitrum-one
     source:
       address: "0xAFbC45a9aaaD39aC26dC4D2Cc32Dc4187d897eCa"
-      abi: PeapodsVault
-      startBlock: 192880710
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - Approval
-        - Transfer
-      abis:       
-        - name: PeapodsVault
-          file: ./abis/PeapodsVault.json
-      eventHandlers:
-        - event: Approval(indexed address,indexed address,uint256)
-          handler: handleApproval
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
-        - event: Deposit(indexed address,uint256,uint256,uint256)
-          handler: handleDeposit
-        - event: Withdraw(indexed address,uint256,uint256,uint256)
-          handler: handleWithdraw
-      file: ./src/PeapodsVault.ts
-  - kind: ethereum
-    name: apGMX_apOHMPeapodsVault
-    network: arbitrum-one
-    source:
-      address: "0x483a461745e4245D5B7Be0BBFb580940d6a4F52a"
-      abi: PeapodsVault
-      startBlock: 192880710
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - Approval
-        - Transfer
-      abis:       
-        - name: PeapodsVault
-          file: ./abis/PeapodsVault.json
-      eventHandlers:
-        - event: Approval(indexed address,indexed address,uint256)
-          handler: handleApproval
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
-        - event: Deposit(indexed address,uint256,uint256,uint256)
-          handler: handleDeposit
-        - event: Withdraw(indexed address,uint256,uint256,uint256)
-          handler: handleWithdraw
-      file: ./src/PeapodsVault.ts
-  - kind: ethereum
-    name: apSavvy_apOHMPeapodsVault
-    network: arbitrum-one
-    source:
-      address: "0x0fC2106678F73cFe2D7C09631c05E6eB079EF36A"
       abi: PeapodsVault
       startBlock: 192880710
     mapping:
