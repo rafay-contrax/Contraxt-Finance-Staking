@@ -68,7 +68,7 @@ import {
     let zero = BigInt.fromI64(0);
     let contract = PeapodsVault.bind(event.address);
     let tokenId = zero;
-    let tokenName = "Gmx";
+    let tokenName = "Unknown";
     let platform = "Peapods";
     let vaultAddress = event.address;
     let userId = event.params._from;
@@ -81,18 +81,16 @@ import {
       }
     }
 
-    let deposit = new Deposit(
-      event.transaction.hash.concatI32(event.logIndex.toI32())
-    );
+    let deposit = new Deposit(event.transaction.hash.concatI32(event.logIndex.toI32()));
     let user = User.load(userId);
     let userBalance = contract.balanceOf(userId);
-  
+
     if (!user) {
       user = new User(userId);
       let userToken = UserToken.load(vaultAddress.concat(userId));
       if (!userToken) {
         userToken = new UserToken(vaultAddress.concat(userId));
-  
+
         userToken.userId = userId;
         userToken.vaultAddress = vaultAddress;
         userToken.tokenId = tokenId;
@@ -104,9 +102,9 @@ import {
         userToken.blockTimestamp = event.block.timestamp;
         userToken.blockNumber = event.block.number;
       }
-  
+
       userToken.deposit = userToken.deposit.plus(event.params._value);
-  
+
       deposit.tokenId = tokenId;
       deposit.tokenName = tokenName;
       deposit.platformName = platform;
@@ -116,15 +114,15 @@ import {
       deposit.userBalance = userBalance;
       deposit.blockTimestamp = event.block.timestamp;
       deposit.blockNumber = event.block.number;
-  
+
       deposit.save();
       user.save();
       userToken.save();
       return;
     }
-  
+
     let userToken = UserToken.load(vaultAddress.concat(userId));
-  
+
     if (!userToken) {
       userToken = new UserToken(vaultAddress.concat(userId));
       userToken.userId = userId;
@@ -138,9 +136,9 @@ import {
       userToken.blockTimestamp = event.block.timestamp;
       userToken.blockNumber = event.block.number;
     }
-  
+
     userToken.deposit = userToken.deposit.plus(event.params._value);
-  
+
     deposit.tokenId = tokenId;
     deposit.tokenName = tokenName;
     deposit.platformName = platform;
@@ -150,21 +148,21 @@ import {
     deposit.userBalance = userBalance;
     deposit.blockTimestamp = event.block.timestamp;
     deposit.blockNumber = event.block.number;
-  
+
     deposit.save();
     user.save();
     userToken.save();
   }
-  
+
   export function handleWithdraw(event: WithdrawEvent): void {
     let zero = BigInt.fromI64(0);
     let contract = PeapodsVault.bind(event.address);
     let tokenId = zero;
-    let tokenName = "Gmx";
+    let tokenName = "Unknown";
     let platform = "Peapods";
     let vaultAddress = event.address;
     let userId = event.params._from;
-    
+
     for (let i = 0; i < vaultArray.length; i++) {
       if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {
         tokenId = BigInt.fromI64(idArray[i]);
@@ -173,13 +171,11 @@ import {
       }
     }
 
-    let withdraw = new Withdraw(
-      event.transaction.hash.concatI32(event.logIndex.toI32())
-    );
+    let withdraw = new Withdraw(event.transaction.hash.concatI32(event.logIndex.toI32()));
 
     let user = User.load(userId);
     let userBalance = contract.balanceOf(userId);
-  
+
     if (!user) {
       user = new User(userId);
       let userToken = UserToken.load(vaultAddress.concat(userId));
@@ -196,13 +192,11 @@ import {
         userToken.blockTimestamp = event.block.timestamp;
         userToken.blockNumber = event.block.number;
       }
-  
+
       userToken.deposit = userToken.deposit.plus(event.params._value);
-  
+
       if (userBalance.equals(zero)) {
-        let periodEarn = new PeriodEarn(
-          event.transaction.hash.concatI32(event.logIndex.toI32())
-        );
+        let periodEarn = new PeriodEarn(event.transaction.hash.concatI32(event.logIndex.toI32()));
         periodEarn.userId = userId;
         periodEarn.vaultAddress = vaultAddress;
         periodEarn.tokenId = tokenId;
@@ -213,13 +207,13 @@ import {
         periodEarn.userBalance = userBalance;
         periodEarn.blockTimestamp = event.block.timestamp;
         periodEarn.blockNumber = event.block.number;
-  
+
         userToken.deposit = zero;
         userToken.withdraw = zero;
-  
+
         periodEarn.save();
       }
-  
+
       withdraw.tokenId = tokenId;
       withdraw.tokenName = tokenName;
       withdraw.platformName = platform;
@@ -229,15 +223,15 @@ import {
       withdraw.userBalance = userBalance;
       withdraw.blockTimestamp = event.block.timestamp;
       withdraw.blockNumber = event.block.number;
-  
+
       withdraw.save();
       user.save();
       userToken.save();
       return;
     }
-  
+
     let userToken = UserToken.load(vaultAddress.concat(userId));
-  
+
     if (!userToken) {
       userToken = new UserToken(vaultAddress.concat(userId));
       userToken.userId = userId;
@@ -251,13 +245,11 @@ import {
       userToken.blockTimestamp = event.block.timestamp;
       userToken.blockNumber = event.block.number;
     }
-  
+
     userToken.withdraw = userToken.withdraw.plus(event.params._value);
-  
+
     if (userBalance.equals(zero)) {
-      let periodEarn = new PeriodEarn(
-        event.transaction.hash.concatI32(event.logIndex.toI32())
-      );
+      let periodEarn = new PeriodEarn(event.transaction.hash.concatI32(event.logIndex.toI32()));
 
       periodEarn.userId = userId;
       periodEarn.vaultAddress = vaultAddress;
@@ -269,13 +261,13 @@ import {
       periodEarn.userBalance = userBalance;
       periodEarn.blockTimestamp = event.block.timestamp;
       periodEarn.blockNumber = event.block.number;
-  
+
       userToken.deposit = zero;
       userToken.withdraw = zero;
-  
+
       periodEarn.save();
     }
-  
+
     withdraw.tokenId = tokenId;
     withdraw.tokenName = tokenName;
     withdraw.platformName = platform;
@@ -285,7 +277,7 @@ import {
     withdraw.userBalance = userBalance;
     withdraw.blockTimestamp = event.block.timestamp;
     withdraw.blockNumber = event.block.number;
-  
+
     withdraw.save();
     user.save();
     userToken.save();
