@@ -1,6 +1,11 @@
 specVersion: 0.0.5
 schema:
   file: ./schema.graphql
+features:
+  - grafting 
+graft:
+  base: QmZUZr6pjnbroPbgK3RTagLAPGG4KGs2qxsvzD8X3eByqP
+  block: 192880700
 dataSources:
   - kind: ethereum
     name: Weth_Usdc
