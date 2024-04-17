@@ -16,7 +16,7 @@ import {
   } from "../generated/schema";
   import { Address, BigInt, log } from "@graphprotocol/graph-ts";
   
-  let idArray = [29, 30, 31];
+  let idArray = [36, 35];
   let tokenNameArray = [
     "Usdc-Usdc.e",
     "Usdt-Usdc.e",
