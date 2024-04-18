@@ -79,12 +79,15 @@ export function handleDeposit(event: DepositEvent): void {
       userToken.platformName = platform;
       userToken.deposit = zero;
       userToken.withdraw = zero;
-      userToken.userBalance = userBalance;
+      userToken.userBalance = zero;
       userToken.blockTimestamp = event.block.timestamp;
       userToken.blockNumber = event.block.number;
     }
 
     userToken.deposit = userToken.deposit.plus(event.params._value);
+    userToken.userBalance = userBalance;
+    userToken.blockTimestamp = event.block.timestamp;
+    userToken.blockNumber = event.block.number;
 
     deposit.tokenId = tokenId;
     deposit.tokenName = tokenName;
@@ -113,12 +116,15 @@ export function handleDeposit(event: DepositEvent): void {
     userToken.vaultAddress = vaultAddress;
     userToken.deposit = zero;
     userToken.withdraw = zero;
-    userToken.userBalance = userBalance;
+    userToken.userBalance = zero;
     userToken.blockTimestamp = event.block.timestamp;
     userToken.blockNumber = event.block.number;
   }
 
   userToken.deposit = userToken.deposit.plus(event.params._value);
+  userToken.userBalance = userBalance;
+  userToken.blockTimestamp = event.block.timestamp;
+  userToken.blockNumber = event.block.number;
 
   deposit.tokenId = tokenId;
   deposit.tokenName = tokenName;
@@ -169,12 +175,15 @@ export function handleWithdraw(event: WithdrawEvent): void {
       userToken.platformName = platform;
       userToken.deposit = zero;
       userToken.withdraw = zero;
-      userToken.userBalance = userBalance;
+      userToken.userBalance = zero;
       userToken.blockTimestamp = event.block.timestamp;
       userToken.blockNumber = event.block.number;
     }
 
-    userToken.deposit = userToken.deposit.plus(event.params._value);
+    userToken.withdraw = userToken.withdraw.plus(event.params._value);
+    userToken.userBalance = userBalance;
+    userToken.blockTimestamp = event.block.timestamp;
+    userToken.blockNumber = event.block.number;
 
     if (userBalance.equals(zero)) {
       let periodEarn = new PeriodEarn(event.transaction.hash.concatI32(event.logIndex.toI32()));
@@ -222,12 +231,15 @@ export function handleWithdraw(event: WithdrawEvent): void {
     userToken.vaultAddress = vaultAddress;
     userToken.deposit = zero;
     userToken.withdraw = zero;
-    userToken.userBalance = userBalance;
+    userToken.userBalance = zero;
     userToken.blockTimestamp = event.block.timestamp;
     userToken.blockNumber = event.block.number;
   }
 
   userToken.withdraw = userToken.withdraw.plus(event.params._value);
+  userToken.userBalance = userBalance;
+  userToken.blockTimestamp = event.block.timestamp;
+  userToken.blockNumber = event.block.number;
 
   if (userBalance.equals(zero)) {
     let periodEarn = new PeriodEarn(event.transaction.hash.concatI32(event.logIndex.toI32()));
