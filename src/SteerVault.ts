@@ -8,11 +8,13 @@ import {
 import { Approval, Transfer, User, PeriodEarn, UserToken, Deposit, Withdraw } from "../generated/schema";
 import { Address, BigInt, log } from "@graphprotocol/graph-ts";
 
-let idArray = [36, 35];
-let tokenNameArray = ["Usdc-Usdc.e", "Usdt-Usdc.e"];
+let idArray = [36, 35, 37, 38];
+let tokenNameArray = ["Usdc-Usdc.e", "Usdt-Usdc.e", "Weth-Usdc.e", "Weth-Sushi"];
 let vaultArray: Array<string> = [
   "0xe41586C416D8fAb3ee01e8a29DaD6f3a8655097d",
   "0x3fB6C1C5b7319Af78608570F97b920a553aB0Ed3",
+  "0xc9464b7Fb1952AA4E26B54B6E1015038f11ab10d",
+  "0x9EfA1F99c86F6Ff0Fa0886775B436281b99e3f26",
 ];
 
 export function handleApproval(event: ApprovalEvent): void {
@@ -245,8 +247,8 @@ export function handleWithdraw(event: WithdrawEvent): void {
     periodEarn.tokenId = tokenId;
     periodEarn.tokenName = tokenName;
     periodEarn.platformName = platform;
-    periodEarn.totalDeposit = userToken.deposit;
     periodEarn.totalWithdraw = userToken.withdraw;
+    periodEarn.totalDeposit = userToken.deposit;
     periodEarn.userBalance = userBalance;
     periodEarn.blockTimestamp = event.block.timestamp;
     periodEarn.blockNumber = event.block.number;
