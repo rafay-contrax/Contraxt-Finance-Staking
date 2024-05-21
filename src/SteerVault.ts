@@ -8,13 +8,14 @@ import {
 import { Approval, Transfer, User, PeriodEarn, UserToken, Deposit, Withdraw } from "../generated/schema";
 import { Address, BigInt, log } from "@graphprotocol/graph-ts";
 
-let idArray = [36, 35, 37, 38];
-let tokenNameArray = ["Usdc-Usdc.e", "Usdt-Usdc.e", "Weth-Usdc.e", "Weth-Sushi"];
+let idArray = [36, 35, 37, 38, 39];
+let tokenNameArray = ["Usdc-Usdc.e-deprecated", "Usdt-Usdc.e", "Weth-Usdc.e", "Weth-Sushi", "Usdc-Usdc.e"];
 let vaultArray: Array<string> = [
   "0xe41586C416D8fAb3ee01e8a29DaD6f3a8655097d",
-  "0x3fB6C1C5b7319Af78608570F97b920a553aB0Ed3",
-  "0xc9464b7Fb1952AA4E26B54B6E1015038f11ab10d",
-  "0x9EfA1F99c86F6Ff0Fa0886775B436281b99e3f26",
+  "0x378eB5201c77B6886c2c6a825c53bD8E49878541",
+  "0x9b77722F39cD07474f3811B9B2d1058Aea09F29E",
+  "0x51A4d5bBcDEa6810Bad4E130C10EFC76C01CFe58",
+  "0x76512AB6a1DEDD45B75dee47841eB9feD2411789",
 ];
 
 export function handleApproval(event: ApprovalEvent): void {

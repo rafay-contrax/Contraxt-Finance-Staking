@@ -4,8 +4,8 @@ schema:
 features:
   - grafting 
 graft:
-  base: QmaamtfxsEyAib2kJ69aUXngeR23q7hKxYuyCBLD718dPX
-  block: 204612700       
+  base: QmPdNhnsxD1cysPkdamqwvtx5cvXBHwDTXMDWbJUuokCTP
+  block: 209147810       
 dataSources:
   - kind: ethereum
     name: Weth_Usdc
@@ -646,7 +646,7 @@ dataSources:
           handler: handleWithdraw
       file: ./src/PeapodsVault.ts
   - kind: ethereum
-    name: Usdc_UsdceSteerVault
+    name: Usdc_UsdceSteerVault_deprecated
     network: arbitrum-one
     source:
       address: "0xe41586C416D8fAb3ee01e8a29DaD6f3a8655097d"
@@ -676,9 +676,9 @@ dataSources:
     name: Usdt_UsdceSteerVault
     network: arbitrum-one
     source:
-      address: "0x3fB6C1C5b7319Af78608570F97b920a553aB0Ed3"
+      address: "0x378eB5201c77B6886c2c6a825c53bD8E49878541"
       abi: SteerVault
-      startBlock: 192880710
+      startBlock: 209216880
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -703,9 +703,9 @@ dataSources:
     name: Weth_UsdceSteerVault
     network: arbitrum-one
     source:
-      address: "0xc9464b7Fb1952AA4E26B54B6E1015038f11ab10d"
+      address: "0x9b77722F39cD07474f3811B9B2d1058Aea09F29E"
       abi: SteerVault
-      startBlock: 204612700
+      startBlock: 209217570
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -730,9 +730,9 @@ dataSources:
     name: Weth_SushiSteerVault
     network: arbitrum-one
     source:
-      address: "0x9EfA1F99c86F6Ff0Fa0886775B436281b99e3f26"
+      address: "0x51A4d5bBcDEa6810Bad4E130C10EFC76C01CFe58"
       abi: SteerVault
-      startBlock: 204613240
+      startBlock: 209217130
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -753,7 +753,33 @@ dataSources:
         - event: Withdraw(indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
       file: ./src/SteerVault.ts
-
+  - kind: ethereum
+    name: Usdc_UsdceSteerVault
+    network: arbitrum-one
+    source:
+      address: "0xfD63923D5216f9f3C59476026a42FFeea28bCa3f"
+      abi: SteerVault
+      startBlock: 209147800
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Transfer
+      abis:       
+        - name: SteerVault
+          file: ./abis/SteerVault.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Deposit(indexed address,uint256,uint256,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,uint256,uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/SteerVault.ts
 
 
 
