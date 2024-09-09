@@ -9,6 +9,7 @@ import {
 import { SushiLp } from "../generated/Weth_Usdc/SushiLp";
 import { Approval, Transfer, User, PeriodEarn, UserToken, Deposit, Withdraw } from "../generated/schema";
 import { Address, BigInt, log } from "@graphprotocol/graph-ts";
+import { extractSmartAccountAddress } from "./common";
 
 let idArray = [10, 8, 1, 2, 3, 4, 26, 25, 24];
 let tokenNameArray = [
@@ -67,7 +68,7 @@ export function handleDeposit(event: DepositEvent): void {
   let tokenName = "Weth_Magic";
   let platform = "SushiSwap";
   let vaultAddress = event.address;
-  let userId = event.params._from;
+  let userId = extractSmartAccountAddress(event);
 
   for (let i = 0; i < vaultArray.length; i++) {
     if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {
@@ -163,7 +164,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
   let tokenName = "Weth_Magic";
   let platform = "SushiSwap";
   let vaultAddress = event.address;
-  let userId = event.params._from;
+  let userId = extractSmartAccountAddress(event);
 
   for (let i = 0; i < vaultArray.length; i++) {
     if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {

@@ -3,20 +3,15 @@ import {
   Transfer as TransferEvent,
   Deposit as DepositEvent,
   Withdraw as WithdrawEvent,
-  SteerVault,
-} from "../generated/Usdc_UsdceSteerVault/SteerVault";
+  ClipperVault,
+} from "../generated/ClipperVault/ClipperVault";
 import { Approval, Transfer, User, PeriodEarn, UserToken, Deposit, Withdraw } from "../generated/schema";
-import { Address, BigInt, Bytes, ethereum } from "@graphprotocol/graph-ts";
+import { Address, BigInt } from "@graphprotocol/graph-ts";
 import { extractSmartAccountAddress } from "./common";
 
-let idArray = [35, 37, 38, 39];
-let tokenNameArray = ["Usdt-Usdc.e", "Weth-Usdc.e", "Weth-Sushi", "Usdc-Usdc.e"];
-let vaultArray: Array<string> = [
-  "0x84f35729fF344C76FA73989511735c85E1F7487D",
-  "0x79deCB182664B1E7809a7EFBb94B50Db4D183310",
-  "0x4fFD588241Fa9183f5cDd57C4CACCac3817A380d",
-  "0x404148F0B94Bc1EA2fdFE98B0DbF36Ff3E015Bb5",
-];
+let idArray = [40];
+let tokenNameArray = ["Clipper"];
+let vaultArray: Array<string> = ["0xa752C41Ca7De8B6852D9f6e17E224D166dCC456b"];
 
 export function handleApproval(event: ApprovalEvent): void {
   let entity = new Approval(event.transaction.hash.concatI32(event.logIndex.toI32()));
@@ -46,10 +41,10 @@ export function handleTransfer(event: TransferEvent): void {
 
 export function handleDeposit(event: DepositEvent): void {
   let zero = BigInt.fromI64(0);
-  let contract = SteerVault.bind(event.address);
+  let contract = ClipperVault.bind(event.address);
   let tokenId = zero;
-  let tokenName = "Unkown";
-  let platform = "Steer";
+  let tokenName = "Clipper";
+  let platform = "Clipper";
   let vaultAddress = event.address;
   let userId = extractSmartAccountAddress(event);
 
@@ -142,10 +137,10 @@ export function handleDeposit(event: DepositEvent): void {
 
 export function handleWithdraw(event: WithdrawEvent): void {
   let zero = BigInt.fromI64(0);
-  let contract = SteerVault.bind(event.address);
+  let contract = ClipperVault.bind(event.address);
   let tokenId = zero;
-  let tokenName = "Unkown";
-  let platform = "Steer";
+  let tokenName = "Clipper";
+  let platform = "Clipper";
   let vaultAddress = event.address;
   let userId = extractSmartAccountAddress(event);
 

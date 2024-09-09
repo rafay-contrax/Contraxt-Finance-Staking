@@ -8,6 +8,7 @@ import {
 import { GmxLp } from "../generated/Gmx/GmxLp";
 import { Approval, Transfer, User, PeriodEarn, UserToken, Deposit, Withdraw } from "../generated/schema";
 import { Address, BigInt, log } from "@graphprotocol/graph-ts";
+import { extractSmartAccountAddress } from "./common";
 
 export function handleApproval(event: ApprovalEvent): void {
   let entity = new Approval(event.transaction.hash.concatI32(event.logIndex.toI32()));
@@ -42,7 +43,7 @@ export function handleDeposit(event: DepositEvent): void {
   let tokenName = "Gmx";
   let platform = "Gmx";
   let vaultAddress = event.address;
-  let userId = event.params._from;
+  let userId = extractSmartAccountAddress(event);
 
   let deposit = new Deposit(event.transaction.hash.concatI32(event.logIndex.toI32()));
   let user = User.load(userId);
@@ -128,7 +129,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
   let tokenName = "Gmx";
   let platform = "Gmx";
   let vaultAddress = event.address;
-  let userId = event.params._from;
+  let userId = extractSmartAccountAddress(event);
 
   let lpContract = GmxLp.bind(contract.token());
   let withdraw = new Withdraw(event.transaction.hash.concatI32(event.logIndex.toI32()));

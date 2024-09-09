@@ -7,6 +7,7 @@ import {
 } from "../generated/GmxPeapodsVault/PeapodsVault";
 import { Approval, Transfer, User, PeriodEarn, UserToken, Deposit, Withdraw } from "../generated/schema";
 import { Address, BigInt, log } from "@graphprotocol/graph-ts";
+import { extractSmartAccountAddress } from "./common";
 
 let idArray = [29, 30, 31, 33, 32];
 let tokenNameArray = ["Gmx", "Ohm", "Peas", "apSavvy-apOHM", "apGMX-apOHM", "PEAS-OHM"];
@@ -52,7 +53,7 @@ export function handleDeposit(event: DepositEvent): void {
   let tokenName = "Unknown";
   let platform = "Peapods";
   let vaultAddress = event.address;
-  let userId = event.params._from;
+  let userId = extractSmartAccountAddress(event);
 
   for (let i = 0; i < vaultArray.length; i++) {
     if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {
@@ -148,7 +149,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
   let tokenName = "Unknown";
   let platform = "Peapods";
   let vaultAddress = event.address;
-  let userId = event.params._from;
+  let userId = extractSmartAccountAddress(event);
 
   for (let i = 0; i < vaultArray.length; i++) {
     if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {

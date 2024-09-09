@@ -11,6 +11,7 @@ import { HopSwap } from "../generated/Hop_Eth/HopSwap";
 
 import { Approval, Transfer, User, PeriodEarn, UserToken, Deposit, Withdraw } from "../generated/schema";
 import { Address, BigInt, log } from "@graphprotocol/graph-ts";
+import { extractSmartAccountAddress } from "./common";
 
 let idArray = [19, 18, 17, 16, 27, 28];
 let tokenNameArray = ["Hop_Dai", "Hop_Usdt", "Hop_Usdc", "Hop_Eth", "Hop_rEth", "Hop_Magic"];
@@ -56,7 +57,7 @@ export function handleDeposit(event: DepositEvent): void {
   let tokenName = "Hop_Dai";
   let platform = "Hop";
   let vaultAddress = event.address;
-  let userId = event.params._from;
+  let userId = extractSmartAccountAddress(event);
 
   for (let i = 0; i < vaultArray.length; i++) {
     if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {
@@ -152,7 +153,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
   let tokenName = "Hop_Dai";
   let platform = "Hop";
   let vaultAddress = event.address;
-  let userId = event.params._from;
+  let userId = extractSmartAccountAddress(event);
 
   for (let i = 0; i < vaultArray.length; i++) {
     if (vaultAddress.equals(Address.fromHexString(vaultArray[i]))) {
