@@ -11,8 +11,11 @@ interface GenericEvent {
 }
 
 export function extractSmartAccountAddress<T extends GenericEvent>(event: T): Address {
-    let logs = event.receipt!.logs; // Logs from the transaction receipt
     let senderAddr = event.params._from;
+    if(!event.receipt){
+        return senderAddr
+    }
+    let logs = event.receipt!.logs; // Logs from the transaction receipt
     for (let i = 0; i < logs.length; i++) {
         // Entry point address
         if (

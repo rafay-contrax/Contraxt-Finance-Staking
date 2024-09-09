@@ -5,6 +5,7 @@
     "codegen": "graph codegen",
     "build": "graph build",
     "deploy": "graph deploy --studio contrax-finance-subgraph",
+    "deploy:base": "graph deploy --studio contrax-finance-subgraph-base",
     "create-local": "graph create --node http://localhost:8020/ rafay-contrax/contrax-finance-subgraph",
     "remove-local": "graph remove --node http://localhost:8020/ rafay-contrax/contrax-finance-subgraph",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 rafay-contrax/contrax-finance-subgraph",

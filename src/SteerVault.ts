@@ -9,13 +9,14 @@ import { Approval, Transfer, User, PeriodEarn, UserToken, Deposit, Withdraw } fr
 import { Address, BigInt, Bytes, ethereum } from "@graphprotocol/graph-ts";
 import { extractSmartAccountAddress } from "./common";
 
-let idArray = [35, 37, 38, 39];
-let tokenNameArray = ["Usdt-Usdc.e", "Weth-Usdc.e", "Weth-Sushi", "Usdc-Usdc.e"];
+let idArray = [35, 37, 38, 39, 201];
+let tokenNameArray = ["Usdt-Usdc.e", "Weth-Usdc.e", "Weth-Sushi", "Usdc-Usdc.e", "Weth-Usdcb"];
 let vaultArray: Array<string> = [
   "0x84f35729fF344C76FA73989511735c85E1F7487D",
   "0x79deCB182664B1E7809a7EFBb94B50Db4D183310",
   "0x4fFD588241Fa9183f5cDd57C4CACCac3817A380d",
   "0x404148F0B94Bc1EA2fdFE98B0DbF36Ff3E015Bb5",
+  "0x76512AB6a1DEDD45B75dee47841eB9feD2411789",
 ];
 
 export function handleApproval(event: ApprovalEvent): void {
