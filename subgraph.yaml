@@ -1,11 +1,11 @@
 specVersion: 1.2.0
 schema:
   file: ./schema.graphql
-# features:
-#   - grafting 
-# graft:
-#   base: QmTpT4pacCjyXPeaYcAPWmDvhkBGiDXSEwM1VrMUrygsm8
-#   block: 226293920   
+features:
+  - grafting 
+graft:
+  base: QmQMEbctRvn1cp5kP9AWhfLXvKPYbGG5U59eswydNDcUvC
+  block: 20274970
 dataSources:
 #region Arbitrum
   # - kind: ethereum
@@ -790,6 +790,60 @@ dataSources:
       address: "0x76512AB6a1DEDD45B75dee47841eB9feD2411789"
       abi: SteerVault
       startBlock: 18988148
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Transfer
+      abis:       
+        - name: SteerVault
+          file: ./abis/SteerVault.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Deposit(indexed address,uint256,uint256,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,uint256,uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/SteerVault.ts
+  - kind: ethereum
+    name: Weth_SnsySteerVault
+    network: base
+    source:
+      address: "0xF1C856646E42E717d73f3D8828ee4e76C4A506E5"
+      abi: SteerVault
+      startBlock: 20279239
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Transfer
+      abis:       
+        - name: SteerVault
+          file: ./abis/SteerVault.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Deposit(indexed address,uint256,uint256,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,uint256,uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/SteerVault.ts
+  - kind: ethereum
+    name: Weth_CbtcSteerVault
+    network: base
+    source:
+      address: "0x3736FEFbBC7E8F70b2d5E7f39834b2A9595da652"
+      abi: SteerVault
+      startBlock: 	20274989
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
