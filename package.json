@@ -6,6 +6,7 @@
     "build": "graph build",
     "deploy": "graph deploy --studio contrax-finance-subgraph",
     "deploy:base": "graph deploy --studio contrax-finance-subgraph-base",
+    "deploy:core": "graph deploy contrax-finance-subgraph-core --node https://thegraph.coredao.org/deploy/ --ipfs https://thegraph.coredao.org/ipfs/",
     "create-local": "graph create --node http://localhost:8020/ rafay-contrax/contrax-finance-subgraph",
     "remove-local": "graph remove --node http://localhost:8020/ rafay-contrax/contrax-finance-subgraph",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 rafay-contrax/contrax-finance-subgraph",
